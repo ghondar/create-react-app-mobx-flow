@@ -3,4 +3,5 @@
 **/public/**
 **/coverage/**
 **/vendor/**
+**/flow-typed/**
 package.json

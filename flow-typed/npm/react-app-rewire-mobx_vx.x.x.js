@@ -23,7 +23,6 @@ declare module 'react-app-rewire-mobx' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'react-app-rewire-mobx/index' {
   declare module.exports: $Exports<'react-app-rewire-mobx'>;
