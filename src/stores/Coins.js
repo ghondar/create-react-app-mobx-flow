@@ -8,7 +8,7 @@ import Coin from './Coin'
 
 const Coins = types
   .model('CoinsStore', {
-    coins: types.array(Coin),
+    coins: types.array(types.frozen(Coin)),
     state: types.enumeration('State', [ 'new', 'pending', 'done', 'error' ])
   })
   .actions(self => ({
