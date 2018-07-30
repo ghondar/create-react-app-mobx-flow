@@ -20,8 +20,9 @@ const data: ?string = localStorage.getItem(localStorageKey)
 const initialState: Object = localStorage.getItem(localStorageKey) ?
   JSON.parse(data || '{}') :
   {
-    BirdStore: {
-      birds: []
+    CoinsStore: {
+      coins: [],
+      state: 'new'
     }
   }
 

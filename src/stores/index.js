@@ -3,14 +3,14 @@
 import { destroy, onSnapshot, types } from 'mobx-state-tree'
 import { connectReduxDevtools } from 'mst-middlewares'
 
-import BirdStore from './BirdStore'
+import CoinsStore from './Coins'
 
 let store
 let snapshotListener
 const localStorageKey = 'mst-todomvc-example'
 
 const Store: Object = types.model({
-  BirdStore
+  CoinsStore
 })
 
 function createTodoStore(snapshot: Object): Object {

@@ -3,12 +3,12 @@
 import React from 'react'
 import { Route, BrowserRouter } from 'react-router-dom'
 
-import Birds from '../container/Birds'
+import Coins from '../container/Coins'
 
 export default () => (
   <BrowserRouter>
     <Route
-      component={Birds} exact path='/'
+      component={Coins} exact path='/'
       strict />
   </BrowserRouter>
 )
