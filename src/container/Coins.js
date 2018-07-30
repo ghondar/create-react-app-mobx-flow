@@ -33,7 +33,7 @@ class Coins extends Component<Props, States> {
     return state === 'done' ? (
       <div>
         <form onSubmit={this._handleFindByPrice}>
-          <label>Find by price: </label>
+          <label>Find by dolar price: </label>
           <input ref={this.price} type='text' />
           <button>Find</button>
         </form>
