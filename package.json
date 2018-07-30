@@ -6,10 +6,13 @@
     "mobx": "5.0.3",
     "mobx-react": "5.2.3",
     "mobx-react-devtools": "6.0.1",
+    "mobx-state-tree": "3.0.2",
+    "mst-middlewares": "3.0.2",
     "react": "16.4.1",
     "react-dom": "16.4.1",
     "react-router-dom": "4.3.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "remotedev": "0.2.7"
   },
   "devDependencies": {
     "babel-eslint": "8.2.6",
@@ -21,6 +24,7 @@
     "flow-typed": "2.5.1",
     "jest": "23.4.1",
     "jest-cli": "23.4.1",
+    "lint-staged": "7.2.0",
     "pre-commit": "1.2.2",
     "prettier-eslint-cli": "4.7.1",
     "react-app-rewire-mobx": "^1.0.8",
@@ -30,14 +34,15 @@
     "start": "react-app-rewired start",
     "remove": "flow-remove-types src/ -d build/",
     "build": "react-app-rewired build",
+    "lint-staged": "lint-staged",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "postinstall": "$(npm bin)/flow-typed install",
-    "format": "prettier-eslint --write \"{src,server}/**/*.js\" && eslint . --ext .js --fix"
+    "format": "prettier-eslint --write \"{src}/**/*.js\" && eslint . --ext .js --fix"
   },
   "pre-commit": "lint-staged",
   "lint-staged": {
-    "{src,server}/**/*.js": [
+    "{src}/**/*.js": [
       "prettier-eslint --write \"{src,server}/**/*.js\"",
       "eslint . --ext .js --fix",
       "git add"

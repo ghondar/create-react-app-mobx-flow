@@ -2,14 +2,11 @@
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import DevTools from 'mobx-react-devtools'
 
 type Props = {
   BirdStore: any | { birdCount: number, birds: Array<string>, addBird: Function, addPrefix: Function }
 }
 
-@inject('BirdStore')
-@observer
 class Birds extends Component<Props> {
   static defaultProps = {
     BirdStore: null
@@ -29,7 +26,6 @@ class Birds extends Component<Props> {
         </form>
         <button onClick={this._handleAddPrefix}>add prefix</button>
         <ul>{BirdStore.birds.map((bird, i) => <li key={i}>{bird}</li>)}</ul>
-        <DevTools />
       </div>
     )
   }
@@ -54,4 +50,4 @@ class Birds extends Component<Props> {
   }
 }
 
-export default Birds
+export default inject('BirdStore')(observer(Birds))

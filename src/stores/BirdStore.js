@@ -1,26 +1,25 @@
 // @flow
 
-import { observable, action, computed } from 'mobx'
+import { types } from 'mobx-state-tree'
 
-class BirdStore {
-  @observable birds: Array<string> = []
+const Bird = types
+  .model('BirdStore', {
+    birds: types.array(types.string)
+  })
+  .actions(self => ({
+    addBird(bird: string) {
+      self.birds.push(bird)
+    },
+    addPrefix(value: number) {
+      self.birds.forEach((bird: string, i: number) => {
+        self.birds[i] = value + bird
+      })
+    }
+  }))
+  .views(self => ({
+    get birdCount() {
+      return self.birds.length
+    }
+  }))
 
-  @action
-  addBird = (bird: string) => {
-    this.birds.push(bird)
-  }
-  addPrefix = (value: number) => {
-    this.birds.forEach((bird, i) => {
-      this.birds[i] = value + bird
-    })
-  }
-
-  @computed
-  get birdCount() {
-    return this.birds.length
-  }
-}
-
-const store: BirdStore = new BirdStore()
-
-export default store
+export default Bird
