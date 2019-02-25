@@ -38,12 +38,11 @@ class Coins extends Component<Props, States> {
           <button>Find</button>
         </form>
         <ul>
-          {coins.map(({ id, name, symbol, price_usd, price_btc }) => (
+          {coins.map(({ id, name, symbol, priceUsd }) => (
             <li key={id}>
               <h2>{symbol}</h2>
               <h3>{name}</h3>
-              <h3>Price in Dolars: ${price_usd}</h3>
-              <h3>Price in Bitcoins: {price_btc}</h3>
+              <h3>Price in Dolars: ${priceUsd}</h3>
             </li>
           ))}
         </ul>

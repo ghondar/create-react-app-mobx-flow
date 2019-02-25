@@ -1,7 +1,3 @@
-const rewireMobX = require('react-app-rewire-mobx')
+const { override, disableEsLint, addBabelPlugins } = require('customize-cra')
 // $FlowFixMe
-module.exports = function override(config, env) {
-  config = rewireMobX(config, env)
-
-  return config
-}
+module.exports = override(disableEsLint(), ...addBabelPlugins([ '@babel/plugin-proposal-decorators', { legacy: true } ]))

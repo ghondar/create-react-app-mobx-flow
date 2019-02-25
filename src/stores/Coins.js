@@ -6,7 +6,7 @@ import { Get } from '../lib/Request'
 
 import Coin from './Coin'
 
-const Coins = types
+const Coins: Array<Coin> = types
   .model('CoinsStore', {
     coins: types.array(types.frozen(Coin)),
     state: types.enumeration('State', [ 'new', 'pending', 'done', 'error' ])
@@ -15,10 +15,11 @@ const Coins = types
     fetchCoins: flow(function*() {
       self.state = 'pending'
       try {
-        self.coins = yield Get('ticker/')
+        const { data } = yield Get('assets/')
+        self.coins = data
         self.state = 'done'
       } catch (error) {
-        console.error(error)
+        console.error('error', error)
         self.state = 'error'
       }
     }),
@@ -28,14 +29,16 @@ const Coins = types
   }))
   .views(self => ({
     coinsByDolarPrice(price: number): Array<Coin> {
-      return self.coins.filter(({ price_usd }) => parseInt(price_usd, 10) > price).sort((a, b) => {
-        const firstPrice = parseInt(a.price_usd, 10)
-        const secondPrice = parseInt(b.price_usd, 10)
-        if(firstPrice > secondPrice) return -1
-        else if(firstPrice < secondPrice) return 1
+      return self.coins
+        .filter(({ priceUsd }) => parseInt(priceUsd, 10) > price)
+        .sort((a, b) => {
+          const firstPrice = parseInt(a.priceUsd, 10)
+          const secondPrice = parseInt(b.priceUsd, 10)
+          if(firstPrice > secondPrice) return -1
+          else if(firstPrice < secondPrice) return 1
 
-        return 0
-      })
+          return 0
+        })
     }
   }))
 

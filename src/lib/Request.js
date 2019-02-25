@@ -26,19 +26,15 @@ class Request {
     return instance
   }
 
-  Get = (route: string) => {
-    return new Promise((resolve, reject) => {
-      verifyRequestCancel(route)
-      this.http()
-        .get(route)
-        .then(res => {
-          resolve(res.data)
-        })
-        .catch(e => {
-          reject({ type: axios.isCancel(e) ? 'cancel' : 'err', ...e })
-        })
-    })
+  Get = (route: string): Promise<Object> => {
+    verifyRequestCancel(route)
+
+    return this.http()
+      .get(route)
+      .then(res => {
+        return res.data
+      })
   }
 }
 
-export const { Get } = new Request('https://api.coinmarketcap.com/v1/')
+export const { Get } = new Request('https://api.coincap.io/v2/')

@@ -20,3 +20,6 @@ suppress_type=$FlowIssue
 suppress_type=$FlowFixMe
 
 [strict]
+
+[version]
+^0.93.0
